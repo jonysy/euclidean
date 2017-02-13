@@ -2,10 +2,10 @@ use array::{Array, ArrayLength as Length, FixedSizeArray};
 use std::fmt;
 use typenum::{consts, Cmp, Greater};
 
-pub type Coordinates1d<T = f64> = Coordinates<T, consts::U1>;
-pub type Coordinates2d<T = f64> = Coordinates<T, consts::U2>;
-pub type Coordinates3d<T = f64> = Coordinates<T, consts::U3>;
-pub type Coordinates4d<T = f64> = Coordinates<T, consts::U4>;
+pub type Coordinates1D<T = f64> = Coordinates<T, consts::U1>;
+pub type Coordinates2D<T = f64> = Coordinates<T, consts::U2>;
+pub type Coordinates3D<T = f64> = Coordinates<T, consts::U3>;
+pub type Coordinates4D<T = f64> = Coordinates<T, consts::U4>;
 
 pub struct Coordinates<T, N>(Array<T, N>) where N: Length<T>;
 

@@ -4,9 +4,9 @@ extern crate array;
 extern crate num;
 extern crate typenum;
 
-pub use coordinates::{Coordinates, Coordinates1d, Coordinates2d, Coordinates3d, Coordinates4d};
-pub use size::{Size, Size1d, Size2d, Size3d, Size4d};
-pub use region::{Iter, Region, Region1d, Region2d, Region3d, Region4d};
+pub use coordinates::{Coordinates, Coordinates1D, Coordinates2D, Coordinates3D, Coordinates4D};
+pub use size::{Size, Size1D, Size2D, Size3D, Size4D};
+pub use region::{Iter, Region, Region1D, Region2D, Region3D, Region4D};
 
 mod coordinates;
 mod size;

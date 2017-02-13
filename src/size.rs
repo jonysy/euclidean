@@ -2,10 +2,10 @@ use array::{Array, ArrayLength as Length, FixedSizeArray};
 use std::ops::Index;
 use typenum::{consts, Cmp, Greater};
 
-pub type Size1d<T = f64> = Size<T, consts::U1>;
-pub type Size2d<T = f64> = Size<T, consts::U2>;
-pub type Size3d<T = f64> = Size<T, consts::U3>;
-pub type Size4d<T = f64> = Size<T, consts::U4>;
+pub type Size1D<T = f64> = Size<T, consts::U1>;
+pub type Size2D<T = f64> = Size<T, consts::U2>;
+pub type Size3D<T = f64> = Size<T, consts::U3>;
+pub type Size4D<T = f64> = Size<T, consts::U4>;
 
 pub struct Size<T, N>(Array<T, N>) where N: Length<T>;
 

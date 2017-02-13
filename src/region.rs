@@ -1,15 +1,15 @@
 use Coordinates;
-use Coordinates2d;
+use Coordinates2D;
 use Size;
 use array::{Array, ArrayLength as Length};
 use num::{One, Zero};
 use std::ops::{AddAssign, Mul};
 use typenum::{consts, Cmp, Greater};
 
-pub type Region1d<T = f64> = Region<T, consts::U1>;
-pub type Region2d<T = f64> = Region<T, consts::U2>;
-pub type Region3d<T = f64> = Region<T, consts::U3>;
-pub type Region4d<T = f64> = Region<T, consts::U4>;
+pub type Region1D<T = f64> = Region<T, consts::U1>;
+pub type Region2D<T = f64> = Region<T, consts::U2>;
+pub type Region3D<T = f64> = Region<T, consts::U3>;
+pub type Region4D<T = f64> = Region<T, consts::U4>;
 
 pub struct Region<T, N> where N: Length<T> {
     pub origin: Coordinates<T, N>,
@@ -113,13 +113,13 @@ impl<T, N> Clone for Region<T, N> where N: Length<T>, Array<T, N>: Clone {
 
 impl<T, N> Copy for Region<T, N> where N: Length<T>, Array<T, N>: Copy { }
 
-pub struct Iter<'r, T: 'r> { position: Coordinates2d<T>, region: &'r Region2d<T> }
+pub struct Iter<'r, T: 'r> { position: Coordinates2D<T>, region: &'r Region2D<T> }
 
 impl<'r, T> Iterator for Iter<'r, T> 
     where T: AddAssign + Copy + One + PartialOrd + Zero
 {
 
-    type Item = Coordinates2d<T>;
+    type Item = Coordinates2D<T>;
 
     fn next(&mut self) -> Option<Self::Item> {
 
