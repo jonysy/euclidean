@@ -1,0 +1,18 @@
+[package]
+name = "euclidean"
+version = "0.1.0"
+authors = ["Jony <jonysy@users.noreply.github.com>"]
+license = "MIT/Apache-2.0"
+readme = "README.md"
+description = "Euclidean geometry."
+keywords = ["mathematics"]
+
+[dependencies]
+num = "0.1.36"
+typenum = "1.5.2"
+
+[dependencies.array]
+path = "../array"
+
+[dev-dependencies]
+speculate = "0.0.24"
