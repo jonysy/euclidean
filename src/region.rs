@@ -1,6 +1,6 @@
 use Coordinates;
 use Coordinates2d;
-use Dimensions;
+use Size;
 use array::{Array, ArrayLength as Length};
 use num::{One, Zero};
 use std::ops::{AddAssign, Mul};
@@ -13,12 +13,12 @@ pub type Region4d<T = f64> = Region<T, consts::U4>;
 
 pub struct Region<T, N> where N: Length<T> {
     pub origin: Coordinates<T, N>,
-    pub dimensions: Dimensions<T, N>,
+    pub dimensions: Size<T, N>,
 }
 
 impl<T, N> Region<T, N> where N: Length<T> {
 
-    pub fn new(origin: Coordinates<T, N>, dimensions: Dimensions<T, N>) -> Self {
+    pub fn new(origin: Coordinates<T, N>, dimensions: Size<T, N>) -> Self {
 
         Region { origin: origin, dimensions: dimensions }
     }

@@ -24,10 +24,10 @@ speculate! {
         }
 
         describe "dimensions in plane geometry" {
-            use euclidean::Dimensions2d;
+            use euclidean::Size2d;
 
             before {
-                let dimensions = Dimensions2d::from([1., 2.]);
+                let dimensions = Size2d::from([1., 2.]);
             }
 
             it "has a width" {
@@ -40,11 +40,11 @@ speculate! {
         }
 
         describe "a plane region" {
-            use euclidean::{Coordinates2d, Dimensions2d, Region2d};
+            use euclidean::{Coordinates2d, Size2d, Region2d};
 
             before {
                 let origin = Coordinates2d::from([1., 2.]);
-                let dimensions = Dimensions2d::from([4., 5.]);
+                let dimensions = Size2d::from([4., 5.]);
                 let region = Region2d::new(origin, dimensions);
             }
 
@@ -62,10 +62,10 @@ speculate! {
         }
 
         describe "region iterator" {
-            use euclidean::{Coordinates2d, Dimensions2d, Region2d};
+            use euclidean::{Coordinates2d, Size2d, Region2d};
 
             it "iterates over a region" {
-                let region = Region2d::new(Coordinates2d::from([5, 7]), Dimensions2d::from([9, 10]));
+                let region = Region2d::new(Coordinates2d::from([5, 7]), Size2d::from([9, 10]));
                 let mut it = region.iter();
 
                 for y in 7..10 {
@@ -78,7 +78,7 @@ speculate! {
             }
 
             it "iterates over a 10x10 region" {
-                let region = Region2d::new(Coordinates2d::from([0, 0]), Dimensions2d::from([10, 10]));
+                let region = Region2d::new(Coordinates2d::from([0, 0]), Size2d::from([10, 10]));
                 let mut it = region.iter();
 
                 for y in 0..10 {
@@ -115,10 +115,10 @@ speculate! {
         }
 
         describe "dimensions in solid geometry" {
-            use euclidean::Dimensions3d;
+            use euclidean::Size3d;
 
             before {
-                let dimensions = Dimensions3d::from([1., 2., 3.]);
+                let dimensions = Size3d::from([1., 2., 3.]);
             }
 
             it "has a width" {
@@ -135,11 +135,11 @@ speculate! {
         }
 
         describe "a solid region" {
-            use euclidean::{Coordinates3d, Dimensions3d, Region3d};
+            use euclidean::{Coordinates3d, Size3d, Region3d};
 
             before {
                 let origin = Coordinates3d::from([1., 2., 3.]);
-                let dimensions = Dimensions3d::from([4., 5., 6.]);
+                let dimensions = Size3d::from([4., 5., 6.]);
                 let region = Region3d::new(origin, dimensions);
             }
 
