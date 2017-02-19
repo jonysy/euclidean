@@ -5,12 +5,12 @@ extern crate euclidean;
 extern crate test;
 
 speculate! {
-    use euclidean::{Coordinates2D, Size2D, Region2D};
+    use euclidean::{Point2D, Size2D, Region2D};
 
     before {
         let region = {
 
-            let c = Coordinates2D::from([0., 0.]);
+            let c = Point2D::from([0., 0.]);
             let d = Size2D::from([10., 10.]);
 
             Region2D::new(c, d)

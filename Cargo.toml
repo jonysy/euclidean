@@ -12,7 +12,7 @@ num = "0.1.36"
 typenum = "1.5.2"
 
 [dependencies.array]
-path = "../array"
+path = "../../array"
 
 [dev-dependencies]
 speculate = "0.0.24"

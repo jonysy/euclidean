@@ -1,5 +1,5 @@
-use Coordinates;
-use Coordinates2D;
+use Point;
+use Point2D;
 use Size;
 use array::{Array, ArrayLength as Length};
 use num::{One, Zero};
@@ -9,18 +9,17 @@ use typenum::{consts, Cmp, Greater};
 pub type Region1D<T = f64> = Region<T, consts::U1>;
 pub type Region2D<T = f64> = Region<T, consts::U2>;
 pub type Region3D<T = f64> = Region<T, consts::U3>;
-pub type Region4D<T = f64> = Region<T, consts::U4>;
 
 pub struct Region<T, N> where N: Length<T> {
-    pub origin: Coordinates<T, N>,
+    pub origin: Point<T, N>,
     pub dimensions: Size<T, N>,
 }
 
 impl<T, N> Region<T, N> where N: Length<T> {
 
-    pub fn new(origin: Coordinates<T, N>, dimensions: Size<T, N>) -> Self {
+    pub fn new(origin: Point<T, N>, dimensions: Size<T, N>) -> Self {
 
-        Region { origin: origin, dimensions: dimensions }
+        Region { origin, dimensions }
     }
 }
 
@@ -113,13 +112,13 @@ impl<T, N> Clone for Region<T, N> where N: Length<T>, Array<T, N>: Clone {
 
 impl<T, N> Copy for Region<T, N> where N: Length<T>, Array<T, N>: Copy { }
 
-pub struct Iter<'r, T: 'r> { position: Coordinates2D<T>, region: &'r Region2D<T> }
+pub struct Iter<'r, T: 'r> { position: Point2D<T>, region: &'r Region2D<T> }
 
 impl<'r, T> Iterator for Iter<'r, T> 
     where T: AddAssign + Copy + One + PartialOrd + Zero
 {
 
-    type Item = Coordinates2D<T>;
+    type Item = Point2D<T>;
 
     fn next(&mut self) -> Option<Self::Item> {
 
@@ -139,6 +138,6 @@ impl<'r, T> Iterator for Iter<'r, T>
 
         *self.position.x_mut() += T::one();
 
-        Some(Coordinates::from([x_coordinate, y_coordinate]))
+        Some(Point::from([x_coordinate, y_coordinate]))
     }
 }

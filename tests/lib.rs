@@ -8,18 +8,18 @@ speculate! {
     describe "plane geometry" {
 
         describe "coordinates in plane geometry" {
-            use euclidean::Coordinates2D;
+            use euclidean::Point2D;
 
             before {
-                let coordinates = Coordinates2D::from([1., 2.]);
+                let point = Point2D::from([1., 2.]);
             }
 
             it "has an `x` coordinate" {
-                assert_eq!(coordinates.x(), 1.);
+                assert_eq!(point.x(), 1.);
             }
 
             it "has a `y` coordinate" {
-                assert_eq!(coordinates.y(), 2.);
+                assert_eq!(point.y(), 2.);
             }
         }
 
@@ -40,10 +40,10 @@ speculate! {
         }
 
         describe "a plane region" {
-            use euclidean::{Coordinates2D, Size2D, Region2D};
+            use euclidean::{Point2D, Size2D, Region2D};
 
             before {
-                let origin = Coordinates2D::from([1., 2.]);
+                let origin = Point2D::from([1., 2.]);
                 let dimensions = Size2D::from([4., 5.]);
                 let region = Region2D::new(origin, dimensions);
             }
@@ -62,15 +62,15 @@ speculate! {
         }
 
         describe "region iterator" {
-            use euclidean::{Coordinates2D, Size2D, Region2D};
+            use euclidean::{Point2D, Size2D, Region2D};
 
             it "iterates over a region" {
-                let region = Region2D::new(Coordinates2D::from([5, 7]), Size2D::from([9, 10]));
+                let region = Region2D::new(Point2D::from([5, 7]), Size2D::from([9, 10]));
                 let mut it = region.iter();
 
                 for y in 7..10 {
                     for x in 5..9 {
-                        assert_eq!(Coordinates2D::from([x, y]), it.next().unwrap());
+                        assert_eq!(Point2D::from([x, y]), it.next().unwrap());
                     }
                 }
 
@@ -78,12 +78,12 @@ speculate! {
             }
 
             it "iterates over a 10x10 region" {
-                let region = Region2D::new(Coordinates2D::from([0, 0]), Size2D::from([10, 10]));
+                let region = Region2D::new(Point2D::from([0, 0]), Size2D::from([10, 10]));
                 let mut it = region.iter();
 
                 for y in 0..10 {
                     for x in 0..10 {
-                        assert_eq!(Coordinates2D::from([x, y]), it.next().unwrap());
+                        assert_eq!(Point2D::from([x, y]), it.next().unwrap());
                     }
                 }
 
@@ -95,10 +95,10 @@ speculate! {
     describe "solid geometry" {
 
         describe "coordinates solid geometry" {
-            use euclidean::Coordinates3D;
+            use euclidean::Point3D;
 
             before {
-                let coordinates = Coordinates3D::from([1., 2., 3.]);
+                let coordinates = Point3D::from([1., 2., 3.]);
             }
 
             it "has an `x` coordinate" {
@@ -135,10 +135,10 @@ speculate! {
         }
 
         describe "a solid region" {
-            use euclidean::{Coordinates3D, Size3D, Region3D};
+            use euclidean::{Point3D, Size3D, Region3D};
 
             before {
-                let origin = Coordinates3D::from([1., 2., 3.]);
+                let origin = Point3D::from([1., 2., 3.]);
                 let dimensions = Size3D::from([4., 5., 6.]);
                 let region = Region3D::new(origin, dimensions);
             }
