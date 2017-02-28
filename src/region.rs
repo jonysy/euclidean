@@ -124,6 +124,14 @@ impl<T> From<[T; 4]> for Region<T, consts::U2> {
     }
 }
 
+impl<T> Into<[T; 4]> for Region<T, consts::U2> where T: Copy {
+
+    fn into(self) -> [T; 4] {
+
+        [self.x(), self.y(), self.width(), self.height()]
+    }
+}
+
 pub struct Iter<'r, T: 'r> { position: Point2D<T>, region: &'r Region2D<T> }
 
 impl<'r, T> Iterator for Iter<'r, T> 
