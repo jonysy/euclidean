@@ -1,7 +1,7 @@
 //! Euclidean Geometry
 
-#![deny(/*missing_docs,*/ unsafe_code, unused_import_braces, unused_qualifications)]
-#![feature(field_init_shorthand, fixed_size_array, pub_restricted)]
+// #![deny(/*missing_docs,*/ unsafe_code, unused_import_braces, unused_qualifications)]
+#![feature(field_init_shorthand, fixed_size_array, pub_restricted, slice_patterns)]
 
 extern crate array;
 extern crate num;

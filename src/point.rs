@@ -1,6 +1,5 @@
 use array::{Array, ArrayLength as Length, FixedSizeArray};
-use std::fmt;
-use std::ops::{Index, IndexMut};
+use std::{clone, cmp, convert, fmt, marker, ops};
 use typenum::{consts, Cmp, Greater};
 
 /// Point in a 1-dimensional coordinate system (simply a single coordinate).
@@ -65,14 +64,61 @@ impl<T, N> Point<T, N> where N: Cmp<consts::U2, Output = Greater> + Length<T> {
     }
 }
 
-impl<T, N> Clone for Point<T, N> where N: Length<T>, Array<T, N>: Clone {
+impl<T, N> clone::Clone for Point<T, N> where N: Length<T>, Array<T, N>: Clone {
 
     fn clone(&self) -> Self {
         Point(self.0.clone())
     }
 }
 
-impl<T, N> Copy for Point<T, N> where N: Length<T>, Array<T, N>: Copy { }
+impl<T, N> cmp::Eq for Point<T, N> where N: Length<T>, Array<T, N>: Eq { }
+
+impl<T, N> cmp::PartialEq for Point<T, N> where N: Length<T>, Array<T, N>: PartialEq {
+
+    fn eq(&self, other: &Self) -> bool {
+
+        self.0 == other.0
+    }
+}
+
+impl<T> convert::From<[T; 1]> for Point<T, consts::U1> {
+
+    fn from(array: [T; 1]) -> Self {
+
+        Point(array)
+    }
+}
+
+impl<T> convert::From<[T; 2]> for Point<T, consts::U2> {
+
+    fn from(array: [T; 2]) -> Self {
+
+        Point(array)
+    }
+}
+
+impl<T> convert::From<[T; 3]> for Point<T, consts::U3> {
+
+    fn from(array: [T; 3]) -> Self {
+
+        Point(array)
+    }
+}
+
+impl<T> convert::From<[T; 4]> for Point<T, consts::U4> {
+
+    fn from(array: [T; 4]) -> Self {
+
+        Point(array)
+    }
+}
+
+impl<T> convert::Into<[T; 2]> for Point<T, consts::U2> {
+
+    fn into(self) -> [T; 2] {
+        self.0
+    }
+}
 
 impl<T, N> fmt::Debug for Point<T, N> where N: Length<T>, Array<T, N>: fmt::Debug {
 
@@ -90,41 +136,9 @@ impl<T> fmt::Display for Point<T, consts::U2> where T: Copy + fmt::Display {
     }
 }
 
-impl<T, N> Eq for Point<T, N> where N: Length<T>, Array<T, N>: Eq { }
+impl<T, N> marker::Copy for Point<T, N> where N: Length<T>, Array<T, N>: Copy { }
 
-impl<T> From<[T; 1]> for Point<T, consts::U1> {
-
-    fn from(array: [T; 1]) -> Self {
-
-        Point(array)
-    }
-}
-
-impl<T> From<[T; 2]> for Point<T, consts::U2> {
-
-    fn from(array: [T; 2]) -> Self {
-
-        Point(array)
-    }
-}
-
-impl<T> From<[T; 3]> for Point<T, consts::U3> {
-
-    fn from(array: [T; 3]) -> Self {
-
-        Point(array)
-    }
-}
-
-impl<T> From<[T; 4]> for Point<T, consts::U4> {
-
-    fn from(array: [T; 4]) -> Self {
-
-        Point(array)
-    }
-}
-
-impl<T, N> Index<usize> for Point<T, N> where N: Length<T> {
+impl<T, N> ops::Index<usize> for Point<T, N> where N: Length<T> {
 
     type Output = T;
 
@@ -134,18 +148,10 @@ impl<T, N> Index<usize> for Point<T, N> where N: Length<T> {
     }
 }
 
-impl<T, N> IndexMut<usize> for Point<T, N> where N: Length<T> {
+impl<T, N> ops::IndexMut<usize> for Point<T, N> where N: Length<T> {
 
     fn index_mut(&mut self, index: usize) -> &mut T {
 
         &mut self.0.as_mut_slice()[index]
-    }
-}
-
-impl<T, N> PartialEq for Point<T, N> where N: Length<T>, Array<T, N>: PartialEq {
-
-    fn eq(&self, other: &Self) -> bool {
-
-        self.0 == other.0
     }
 }

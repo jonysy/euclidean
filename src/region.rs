@@ -54,6 +54,10 @@ impl<T, N> Region<T, N>
     pub fn height(&self) -> T {
         self.dimensions.height()
     }
+
+    pub fn bounds(&self) -> (T, T, T, T) {
+        (self.x(), self.y(), self.dimensions.width(), self.dimensions.height())
+    }
 }
 
 impl<T> Region<T, consts::U2> {
@@ -111,6 +115,14 @@ impl<T, N> Clone for Region<T, N> where N: Length<T>, Array<T, N>: Clone {
 }
 
 impl<T, N> Copy for Region<T, N> where N: Length<T>, Array<T, N>: Copy { }
+
+impl<T> From<[T; 4]> for Region<T, consts::U2> {
+
+    fn from([x, y, w, h]: [T; 4]) -> Region<T, consts::U2> {
+
+        Region::new(Point::from([x, y]), Size::from([w, h]))
+    }
+}
 
 pub struct Iter<'r, T: 'r> { position: Point2D<T>, region: &'r Region2D<T> }
 
